@@ -12,6 +12,13 @@ class Player
         @points = 0
         @pawn = " "
     end
+
+    def choise_name
+        puts "\n#{@name} veuillez rentrer votre nom :"
+        print "=> "
+        @name = gets.chomp
+        puts"\nBonjour #{@name}"
+    end
 end
 
 
