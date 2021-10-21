@@ -6,9 +6,9 @@ class Game
     attr_accessor :player1 , :player2 , :game_board , :cases
 
 
-    def initialize
-        @player1 = Player.new("Player 1")
-        @player2 = Player.new("Player 2")
+    def initialize (player1_to_save , player2_to_save)
+        @player1 = player1_to_save
+        @player2 = player2_to_save
         @game_board = GameBoard.new
         @player1.pawn = "X"
         @player2.pawn = "O"
@@ -16,8 +16,8 @@ class Game
     end
 
     def menu(player)
-        puts " #{player.name} c'est à votre tour de jouer" 
-        puts "\n Que voulez vous jouer?"
+        puts "## #{player.name}, c'est à votre tour de jouer" 
+        puts "\nQue voulez vous jouer ?"
         @cases.each do |each_case|
             print " - #{each_case.name}"
         end
@@ -36,7 +36,7 @@ class Game
                     return
                 end
             end
-            puts " Je n'ai pas compris votre réponse"
+            puts "Je n'ai pas compris votre réponse"
         end
     end
 
@@ -45,25 +45,37 @@ class Game
 
     def game_run
         
-        player1.choise_name
-        player2.choise_name
-        game_board.display
        
-        while @cases != []
-           
+        sleep(1)
+        puts "\n\n#{player1.name} joue en première position avec les pions #{player1.pawn}"
+        sleep(0.1)
+        puts "#{player2.name} joue en seconde position avec les pions #{player2.pawn}"
+        puts "\n\n"
+        game_board.display
+        sleep(1)
+        while @cases != []       
+
             menu(player1)
             menu_choice(player1)
+            sleep(0.5)
             game_board.display
-            return puts "Bravo #{player1.name} !! Tu as gagné !\n\n " if game_board.someone_won?
+            if game_board.someone_won?
+                player1.points += 1
+                return puts "Bravo #{player1.name} !! Tu as gagné ! " 
+            end
             break if @cases ==[]
             menu(player2)
             menu_choice(player2)
+            sleep(0.5)
             game_board.display
-            return puts "Bravo #{player2.name} !! Tu as gagné !\n\n " if game_board.someone_won?
+            if game_board.someone_won?
+                player2.points += 1
+                return puts "Bravo #{player2.name} !! Tu as gagné !" 
+            end
          
         end
 
-        puts "Fin de partie : personne n'a gagné\n\n "
+        puts "Partie nulle : c'est nul !\n\n "
     end      
 
 end

@@ -14,10 +14,16 @@ class Player
     end
 
     def choise_name
-        puts "\n#{@name} veuillez rentrer votre nom :"
+        sleep(1)
+        puts "\n#{@name}, veuillez entrer votre nom :"
         print "=> "
         @name = gets.chomp
+        sleep(0.5)
         puts"\nBonjour #{@name}"
+    end
+
+    def score
+        puts "#{@name} : #{@points} point"
     end
 end
 
