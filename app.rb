@@ -7,8 +7,8 @@ require_relative 'lib/game'
 require_relative 'lib/case'
 require_relative 'lib/tournament'
 
-test = Tournament.new
-test.tournament_run
+
+Tournament.new.tournament_run
 
 
 

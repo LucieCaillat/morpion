@@ -56,10 +56,12 @@ class Tournament
 
     def tournament_run
         title
-        presentation
-        puts " \n\nCommençons à jouer !"
-        score_presentation
-        sleep(1)               
+        presentation        
+        sleep(1)
+        score_presentation        
+        puts " \n\nAppuyer sur Entrée pour commençer à jouer !"
+        puts "\n\n"
+        gets               
         games = Game.new(@player1 , @player2)
         games.game_run
         score_presentation                

@@ -40,34 +40,43 @@ class Game
         end
     end
 
+    def fix_board
+        system("clear")
+        puts "\n\n#{player1.name} joue en première position avec les pions #{player1.pawn}"
+        puts "#{player2.name} joue en seconde position avec les pions #{player2.pawn}"
+        puts "\n\n"
+        game_board.display
+    end
+
 
 
 
     def game_run
         
-       
-        sleep(1)
+        system("clear")
+        sleep(0.3)        
         puts "\n\n#{player1.name} joue en première position avec les pions #{player1.pawn}"
-        sleep(0.1)
+        sleep(0.3)
         puts "#{player2.name} joue en seconde position avec les pions #{player2.pawn}"
         puts "\n\n"
+        sleep(0.8)
         game_board.display
-        sleep(1)
+        
         while @cases != []       
 
+            sleep(0.8)
             menu(player1)
             menu_choice(player1)
-            sleep(0.5)
-            game_board.display
+            fix_board
             if game_board.someone_won?
                 player1.points += 1
                 return puts "Bravo #{player1.name} !! Tu as gagné ! " 
             end
-            break if @cases ==[]
+            break if @cases == []
+            sleep(0.8)
             menu(player2)
             menu_choice(player2)
-            sleep(0.5)
-            game_board.display
+            fix_board
             if game_board.someone_won?
                 player2.points += 1
                 return puts "Bravo #{player2.name} !! Tu as gagné !" 
